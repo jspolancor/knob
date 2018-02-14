@@ -4,7 +4,7 @@
 <template>
   <div
   :class="$style.component"
-  @click="setValue($event)"
+  @mousemove="setValue($event)"
   :style="{ transform: `rotate(${deg}deg)`}">
   </div>
 </template>
