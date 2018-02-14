@@ -3,6 +3,6 @@
 
 <template>
 	<div>
-		<h2>HomePage</h2>
+		<Knob :min="0" :max="100"></Knob>
 	</div>
 </template>
