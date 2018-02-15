@@ -2,9 +2,7 @@
 <script src="./Knob.js"></script>
 
 <template>
-  <div
-  :class="$style.component"
-  @mousemove="setValue($event)"
-  :style="{ transform: `rotate(${deg}deg)`}">
+  <div>
+    <div class='knob' :id="id"></div>
   </div>
 </template>
