@@ -26,6 +26,5 @@ export default {
     this.frequencyOut = this.osc.frequency;
     this.volumeOut = this.osc.volume;
     this.detuneOut = this.osc.detune;
-    console.log(this.osc);
   },
 };
