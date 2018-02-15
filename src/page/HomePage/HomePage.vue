@@ -3,6 +3,6 @@
 
 <template>
 	<div>
-		<Knob :min="1" :max="200" :step="1" :input="output"></Knob>
+    <Osc></Osc>
 	</div>
 </template>
