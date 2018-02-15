@@ -1,5 +1,6 @@
 import Tone from 'tone';
 import Knob from '../../component/Knob';
+import Stepper from '../../component/Stepper';
 
 export default {
   name: 'Osc',
@@ -11,8 +12,10 @@ export default {
       detuneOut: null,
     };
   },
+  props: ['controllers'],
   components: {
     Knob,
+    Stepper,
   },
   created() {
     this.osc = new Tone.Oscillator({
