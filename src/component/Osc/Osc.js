@@ -6,10 +6,8 @@ export default {
   data() {
     return {
       osc: null,
-      frequency: 0,
-      volume: 0,
+      output: null,
       frequencyOut: null,
-      volumeOut: null,
       detuneOut: null,
     };
   },
@@ -18,13 +16,14 @@ export default {
   },
   created() {
     this.osc = new Tone.Oscillator({
-      type: 'sawtooth6',
-      frequency: this.frequency,
-      volume: this.volume,
+      type: 'square',
+      frequency: 0,
+      volume: 0,
+      detune: 0,
     }).toMaster();
     this.osc.start();
     this.frequencyOut = this.osc.frequency;
-    this.volumeOut = this.osc.volume;
     this.detuneOut = this.osc.detune;
+    this.output = this.osc;
   },
 };

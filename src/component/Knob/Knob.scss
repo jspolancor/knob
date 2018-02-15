@@ -1,13 +1,6 @@
 /* stylelint-disable-next-line block-no-empty */
 :local {
-  .component{
-    background: url('./img/knob.png');
-    min-width: 80px;
-    min-height: 80px;
-    background-size: contain;
-    background-repeat: no-repeat;
+  .component {
     display: inline-block;
-    margin: 10px;
-    transition: 0.1s;
   }
 }

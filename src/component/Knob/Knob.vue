@@ -2,7 +2,7 @@
 <script src="./Knob.js"></script>
 
 <template>
-  <div>
+  <div :class="$style.component">
     <div class='knob' :id="id"></div>
   </div>
 </template>

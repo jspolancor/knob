@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    <Knob :min="0" :max="500" :step="1" :input="frequencyOut"></Knob>
-    <Knob :min="-40" :max="100" :step="1" :input="volumeOut"></Knob>
+    <Knob :min="1" :max="1199" :step="1" :input="frequencyOut"></Knob>
+    <Knob :min="-1200" :max="1200" :step="1" :input="detuneOut"></Knob>
   </div>
 </template>
