@@ -4,15 +4,16 @@
 <template>
 	<div>
     <Knob :min="10" :max="300" :step="1" :input="globalBpm"></Knob>
-    <div v-for="s in ['synth', 'am', 'duo', 'fm', 'membrane', 'mono', 'pluck']">
+
       <Steps
-      :label="`${s} synth`"
+      :label="'memb synth'"
       :steps="8"
-      :notes="['A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1']"
-      :synth="{ type: s }"
+      :notes="['D0']"
+      :files="['../../../static/mp3/sense.mp3']"
+      :synth="{ type: 'membrane' }"
       :time="2"
     >
     </Steps>
-    </div>
+
 	</div>
 </template>

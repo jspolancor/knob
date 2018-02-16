@@ -20,14 +20,5 @@ export default {
     Tone.Transport.start();
     Tone.Transport.bpm.value = 120;
     this.globalBpm = Tone.Transport.bpm;
-
-    const sampler = new Tone.Sampler(
-      {
-        D3: '../../../static/mp3/sense.mp3',
-      },
-      () => {
-        sampler.triggerAttack('D3');
-      },
-    ).toMaster();
   },
 };

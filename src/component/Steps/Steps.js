@@ -9,6 +9,7 @@ export default {
       id: null,
       sequencer: null, // UI
       looper: null, // Tone
+      sampler: null, // Files
     };
   },
   props: {
@@ -20,6 +21,15 @@ export default {
     notes: VueTypes.arrayOf(String), // array of notes  in string notatios
     files: VueTypes.arrayOf(String), // Array of file routes
     time: VueTypes.number.isRequired, // Time a note should sound
+  },
+  created() {
+    if (this.files.length) {
+      const loopsObj = {};
+      this.files.forEach((file, index) => {
+        loopsObj[`D${index}`] = file;
+      });
+      this.sampler = new Tone.Sampler(loopsObj).toMaster();
+    }
   },
   mounted() {
     // Create the steps UI
@@ -39,7 +49,11 @@ export default {
         (time, index) => {
           for (let i = 0; i < this.sequencer.matrix.pattern.length; i += 1) {
             if (this.sequencer.matrix.pattern[i][index]) {
-              synth.triggerAttackRelease(this.notes[i], this.time);
+              if (this.files) {
+                this.sampler.triggerAttackRelease(this.notes[i]);
+              } else {
+                synth.triggerAttackRelease(this.notes[i], this.time);
+              }
             }
           }
         },
