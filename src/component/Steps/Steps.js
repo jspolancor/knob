@@ -24,7 +24,6 @@ export default {
   mounted() {
     // Create the steps UI
     this.id = `steps-${this._uid}`;
-    // SetTimeout ?
     this.$nextTick(() => {
       this.sequencer = new Nexus.Sequencer(`#${this.id}`, {
         size: [400, 200],
@@ -34,16 +33,20 @@ export default {
       });
 
       const synth = this.createSynth(this.synth.type);
+      this.looper = new Tone.Sequence(
+        (time, index) => {
+          for (var i = 0; i < this.sequencer.matrix.pattern.length; i++) {
+            if (this.sequencer.matrix.pattern[i][index]) {
+              synth.triggerAttackRelease(this.notes[i], this.time);
+            }
+          }
+        },
+        Array.from(new Array(this.steps), (val, index) => index),
+        '16n',
+      );
 
-      this.sequencer.on('step', v => {
-        v.forEach((on, index) => {
-          if (on) synth.triggerAttackRelease(this.notes[index], this.time);
-        });
-      });
-
-      this.sequencer.start(500);
+      this.looper.start();
     });
-    console.info(`${this.label} steps with id: ${this.id} instantiated`);
   },
   methods: {
     createSynth(type) {
