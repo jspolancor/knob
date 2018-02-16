@@ -15,7 +15,7 @@ export default {
     label: VueTypes.string.isRequired, // Label to show
     steps: VueTypes.integer.isRequired, // number of steps
     synth: VueTypes.shape({
-      type: VueTypes.oneOf(['synth', 'am', 'duo', 'fm', 'membrane']),
+      type: VueTypes.oneOf(['synth', 'am', 'duo', 'fm', 'membrane', 'mono', 'pluck']),
     }),
     notes: VueTypes.arrayOf(String), // array of notes  in string notatios
     files: VueTypes.arrayOf(String), // Array of file routes
@@ -37,7 +37,7 @@ export default {
       // Create a looper for each component, every component is connected to the main bpm
       this.looper = new Tone.Sequence(
         (time, index) => {
-          for (var i = 0; i < this.sequencer.matrix.pattern.length; i++) {
+          for (let i = 0; i < this.sequencer.matrix.pattern.length; i += 1) {
             if (this.sequencer.matrix.pattern[i][index]) {
               synth.triggerAttackRelease(this.notes[i], this.time);
             }
@@ -78,6 +78,12 @@ export default {
           break;
         case 'membrane':
           synth = new Tone.MembraneSynth().toMaster();
+          break;
+        case 'mono':
+          synth = new Tone.MonoSynth().toMaster();
+          break;
+        case 'pluck':
+          synth = new Tone.PluckSynth().toMaster();
           break;
         default:
           break;
