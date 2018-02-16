@@ -7,15 +7,15 @@ export default {
   data() {
     return {
       id: null,
-      sequencer: null,
-      looper: null,
+      sequencer: null, // UI
+      looper: null, // Tone
     };
   },
   props: {
     label: VueTypes.string.isRequired, // Label to show
     steps: VueTypes.integer.isRequired, // number of steps
     synth: VueTypes.shape({
-      type: VueTypes.oneOf(['synth', 'polysynth', 'monosynth', 'noise', 'metal']),
+      type: VueTypes.oneOf(['synth', 'am', 'duo', 'fm', 'membrane']),
     }),
     notes: VueTypes.arrayOf(String), // array of notes  in string notatios
     files: VueTypes.arrayOf(String), // Array of file routes
@@ -26,13 +26,15 @@ export default {
     this.id = `steps-${this._uid}`;
     this.$nextTick(() => {
       this.sequencer = new Nexus.Sequencer(`#${this.id}`, {
-        size: [400, 200],
+        size: [200, 200],
         mode: 'toggle',
         rows: this.notes.length || this.files.length,
         columns: this.steps,
       });
 
       const synth = this.createSynth(this.synth.type);
+
+      // Create a looper for each component, every component is connected to the main bpm
       this.looper = new Tone.Sequence(
         (time, index) => {
           for (var i = 0; i < this.sequencer.matrix.pattern.length; i++) {
@@ -65,11 +67,17 @@ export default {
             },
           }).toMaster();
           break;
-        case 'polysynth':
-          synth = new Tone.PolySynth(6, Tone.Synth).toMaster();
+        case 'am':
+          synth = new Tone.AMSynth().toMaster();
           break;
-        case 'metal':
-          synth = new Tone.MetalSynth().toMaster();
+        case 'duo':
+          synth = new Tone.DuoSynth().toMaster();
+          break;
+        case 'fm':
+          synth = new Tone.FMSynth().toMaster();
+          break;
+        case 'membrane':
+          synth = new Tone.MembraneSynth().toMaster();
           break;
         default:
           break;
