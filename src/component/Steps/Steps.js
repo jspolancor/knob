@@ -23,7 +23,7 @@ export default {
     time: VueTypes.number.isRequired, // Time a note should sound
   },
   created() {
-    if (this.files.length) {
+    if (this.files) {
       const loopsObj = {};
       this.files.forEach((file, index) => {
         loopsObj[`D${index}`] = file;

@@ -15,5 +15,14 @@
     >
     </Steps>
 
+    <Steps
+      :label="'memb synth'"
+      :steps="8"
+      :notes="['C1', 'C2', 'C3']"
+      :synth="{ type: 'membrane' }"
+      :time="1"
+    >
+    </Steps>
+
 	</div>
 </template>
