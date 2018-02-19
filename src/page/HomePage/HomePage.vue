@@ -10,10 +10,18 @@
       :label="'duo synth'"
       :steps="16"
       :notes="['C1', 'C2', 'C3', 'D0', 'E4']"
-      :synth="{ type: 'mono' }"
+      :synth="{ type: 'fm' }"
       :time="0.1"
     >
     </Steps>
+
+    <!--Steps
+      :label="'1 row sample'"
+      :steps="16"
+      :files="['../../../static/mp3/sense.mp3']"
+      :time="0.1"
+    >
+    </Steps-->
 
 
 	</div>
