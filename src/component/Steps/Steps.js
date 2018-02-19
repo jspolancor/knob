@@ -12,6 +12,7 @@ export default {
       looper: null, // Tone
       stepHeight: 25,
       panVol: {}, // Panning + Volume object
+      synthOutput: {}, // Synth object
     };
   },
   props: {
@@ -39,9 +40,10 @@ export default {
         columns: this.steps,
       });
 
-      const synth = this.createSynth(this.synth.type);
+      this.synthOutput = this.createSynth(this.synth.type);
       this.panVol = new Tone.PanVol();
-      synth.chain(this.panVol, Tone.Master);
+      console.log(this.panVol)
+      this.synthOutput.chain(this.panVol, Tone.Master);
       // Create a looper for each component, every component is connected to the main bpm
       const stepsArr = Array.from(this.sequencer.matrix.ui.interactionTarget.children);
       this.looper = new Tone.Sequence(
@@ -56,7 +58,7 @@ export default {
           for (let i = 0; i < this.sequencer.matrix.pattern.length; i += 1) {
             if (this.sequencer.matrix.pattern[i][index]) {
                 // this.sampler.triggerAttackRelease(this.notes[i]);
-                synth.triggerAttackRelease(this.notes[i], this.time);
+                this.synthOutput.triggerAttackRelease(this.notes[i], this.time);
             }
           }
         },
