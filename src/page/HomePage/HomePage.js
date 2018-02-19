@@ -18,7 +18,7 @@ export default {
   },
   created() {
     Tone.Transport.start();
-    Tone.Transport.bpm.value = 120;
+    Tone.Transport.bpm.value = 10;
     this.globalBpm = Tone.Transport.bpm;
   },
 };

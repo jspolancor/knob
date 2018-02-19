@@ -3,25 +3,26 @@
 
 <template>
 	<div>
-    <Knob :min="10" :max="300" :step="1" :input="globalBpm"></Knob>
-
-    <Steps
-      :label="'memb synth'"
-      :steps="16"
-      :notes="['D0']"
-      :synth="{ type: 'membrane' }"
-      :time="2"
-    >
-    </Steps>
+    <Knob :min="10" :max="200" :step="1" :input="globalBpm"></Knob>
 
     <Steps
       :label="'memb synth'"
       :steps="8"
-      :notes="['C1', 'C2', 'C3']"
-      :synth="{ type: 'duo' }"
+      :notes="['D0']"
+      :synth="{ type: 'membrane' }"
+      :time="1"
+    >
+    </Steps>
+
+    <Steps
+      :label="'memb synth'"
+      :steps="16"
+      :notes="['C1', 'C2', 'C3', 'D0', 'E4']"
+      :synth="{ type: 'am' }"
       :time="0.1"
     >
     </Steps>
+
 
 	</div>
 </template>

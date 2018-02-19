@@ -9,14 +9,14 @@ export default {
       id: null,
       sequencer: null, // UI
       looper: null, // Tone
-      stepHeight: 50,
+      stepHeight: 25,
     };
   },
   props: {
     label: VueTypes.string.isRequired, // Label to show
     steps: VueTypes.integer.isRequired, // number of steps
     synth: VueTypes.shape({
-      type: VueTypes.oneOf(['synth', 'am', 'duo', 'fm', 'membrane', 'mono', 'pluck']),
+      type: VueTypes.oneOf(['synth', 'am', 'duo', 'fm', 'membrane', 'mono']),
     }),
     notes: VueTypes.arrayOf(String), // array of notes  in string notation
     files: VueTypes.arrayOf(String), // Array of file routes
@@ -24,7 +24,6 @@ export default {
   },
   mounted() {
     // Create the steps UI
-    // Get the viewport size
     const stepperWidth = window.innerWidth - 40;
     this.id = `steps-${this._uid}`;
     this.$nextTick(() => {
@@ -36,10 +35,17 @@ export default {
       });
 
       const synth = this.createSynth(this.synth.type);
-
       // Create a looper for each component, every component is connected to the main bpm
+      const stepsArr = Array.from(this.sequencer.matrix.ui.interactionTarget.children);
       this.looper = new Tone.Sequence(
         (time, index) => {
+          // Loop trough the steps and turn them on or off depending on the current looper note 
+          stepsArr.forEach((step, i) => {
+            step.style.borderBottom = 'none';
+            if((this.steps - i + index) % this.steps === 0){
+              step.style.borderBottom = 'solid black 1px';
+            }
+          });
           for (let i = 0; i < this.sequencer.matrix.pattern.length; i += 1) {
             if (this.sequencer.matrix.pattern[i][index]) {
                 // this.sampler.triggerAttackRelease(this.notes[i]);
@@ -85,9 +91,6 @@ export default {
           break;
         case 'mono':
           synth = new Tone.MonoSynth().toMaster();
-          break;
-        case 'pluck':
-          synth = new Tone.PluckSynth().toMaster();
           break;
         default:
           break;
