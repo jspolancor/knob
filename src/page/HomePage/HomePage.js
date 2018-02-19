@@ -1,24 +1,10 @@
-import Tone from 'tone';
-import Osc from '../../component/Osc';
-import Knob from '../../component/Knob';
+import GlobalController from '../../component/GlobalController';
 import Steps from '../../component/Steps';
 
 export default {
   name: 'HomePage',
   components: {
-    Knob,
-    Osc,
-    Steps,
-  },
-  data() {
-    return {
-      output: null,
-      globalBpm: null,
-    };
-  },
-  created() {
-    Tone.Transport.start();
-    Tone.Transport.bpm.value = 10;
-    this.globalBpm = Tone.Transport.bpm;
-  },
+    GlobalController,
+    Steps
+  } 
 };

@@ -14,7 +14,7 @@ export default {
     this.id = `k-${this._uid}`;
     this.$nextTick(() => {
       this.dial = new Nexus.Dial(`#${this.id}`, {
-        size: [65, 65],
+        size: [40, 40],
         interaction: 'radial',
         mode: 'relative',
         min: this.min,

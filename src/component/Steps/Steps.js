@@ -1,6 +1,7 @@
 import Tone from 'tone';
 import Nexus from 'nexusui';
 import VueTypes from 'vue-types';
+import Knob from '../Knob';
 
 export default {
   name: 'Steps',
@@ -10,6 +11,7 @@ export default {
       sequencer: null, // UI
       looper: null, // Tone
       stepHeight: 25,
+      panVol: {}, // Panning + Volume object
     };
   },
   props: {
@@ -21,6 +23,9 @@ export default {
     notes: VueTypes.arrayOf(String), // array of notes  in string notation
     files: VueTypes.arrayOf(String), // Array of file routes
     time: VueTypes.number.isRequired,
+  },
+  components: {
+    Knob
   },
   mounted() {
     // Create the steps UI
@@ -35,6 +40,8 @@ export default {
       });
 
       const synth = this.createSynth(this.synth.type);
+      this.panVol = new Tone.PanVol();
+      synth.chain(this.panVol, Tone.Master);
       // Create a looper for each component, every component is connected to the main bpm
       const stepsArr = Array.from(this.sequencer.matrix.ui.interactionTarget.children);
       this.looper = new Tone.Sequence(

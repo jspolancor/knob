@@ -3,7 +3,8 @@
 
 <template>
 	<div>
-    <Knob :min="10" :max="200" :step="1" :input="globalBpm"></Knob>
+    
+    <GlobalController/>
 
     <Steps
       :label="'memb synth'"

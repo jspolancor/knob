@@ -1,0 +1,12 @@
+/* stylelint-disable-next-line block-no-empty */
+:local {
+    .component {
+        border: solid grey 1px;
+        padding: 10px;
+        margin: 10px;
+    }
+    .osc{
+        display: inline-block;
+        float: right;
+    }
+}
