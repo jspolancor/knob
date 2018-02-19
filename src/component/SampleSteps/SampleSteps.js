@@ -4,7 +4,7 @@ import VueTypes from 'vue-types';
 import Knob from '../Knob';
 
 export default {
-  name: 'Steps',
+  name: 'SampleSteps',
   data() {
     return {
       id: null,
@@ -12,20 +12,25 @@ export default {
       looper: null, // Tone
       stepHeight: 25,
       panVol: {}, // Panning + Volume object
-      synthOutput: {}, // Synth object
+      fileNotes: [],
     };
   },
   props: {
     label: VueTypes.string.isRequired, // Label to show
     steps: VueTypes.integer.isRequired, // number of steps
-    synth: VueTypes.shape({
-      type: VueTypes.oneOf(['synth', 'am', 'duo', 'fm', 'membrane', 'mono']),
-    }),
-    notes: VueTypes.arrayOf(String).isRequired, // array of notes  in string notation
+    files: VueTypes.arrayOf(String).isRequired, // Array of file routes
     time: VueTypes.number.isRequired,
   },
   components: {
     Knob,
+  },
+  created() {
+    const loopsObj = {};
+    this.files.forEach((file, index) => {
+      loopsObj[`D${index}`] = file;
+      this.fileNotes.push(`D${index}`);
+    });
+    this.sampler = new Tone.Sampler(loopsObj).toMaster();
   },
   mounted() {
     // Create the steps UI
@@ -33,15 +38,12 @@ export default {
     this.id = `steps-${this._uid}`;
     this.$nextTick(() => {
       this.sequencer = new Nexus.Sequencer(`#${this.id}`, {
-        size: [stepperWidth, this.stepHeight * this.notes.length],
+        size: [stepperWidth, this.stepHeight * this.files.length],
         mode: 'toggle',
-        rows: this.notes.length,
+        rows: this.files.length,
         columns: this.steps,
       });
 
-      this.synthOutput = this.createSynth(this.synth.type);
-      this.panVol = new Tone.PanVol();
-      this.synthOutput.chain(this.panVol, Tone.Master);
       // Create a looper for each component, every component is connected to the main bpm
       const stepsArr = Array.from(this.sequencer.matrix.ui.interactionTarget.children);
       this.looper = new Tone.Sequence(
@@ -55,8 +57,7 @@ export default {
           });
           for (let i = 0; i < this.sequencer.matrix.pattern.length; i += 1) {
             if (this.sequencer.matrix.pattern[i][index]) {
-              // this.sampler.triggerAttackRelease(this.notes[i]);
-              this.synthOutput.triggerAttackRelease(this.notes[i], this.time);
+              this.sampler.triggerAttackRelease(this.fileNotes[i], this.time);
             }
           }
         },
@@ -66,47 +67,5 @@ export default {
 
       this.looper.start();
     });
-  },
-  methods: {
-    /**
-     * Returns a synth based on a synth type
-     * @param {String} type synth type
-     */
-    createSynth(type) {
-      let synth;
-      switch (type) {
-        case 'synth':
-          synth = new Tone.Synth({
-            oscillator: {
-              type: 'square',
-            },
-            envelope: {
-              attack: 0.01,
-              decay: 0.2,
-              sustain: 0.2,
-              release: 0.2,
-            },
-          }).toMaster();
-          break;
-        case 'am':
-          synth = new Tone.AMSynth().toMaster();
-          break;
-        case 'duo':
-          synth = new Tone.DuoSynth().toMaster();
-          break;
-        case 'fm':
-          synth = new Tone.FMSynth().toMaster();
-          break;
-        case 'membrane':
-          synth = new Tone.MembraneSynth().toMaster();
-          break;
-        case 'mono':
-          synth = new Tone.MonoSynth().toMaster();
-          break;
-        default:
-          break;
-      }
-      return synth;
-    },
   },
 };

@@ -6,22 +6,43 @@
 
     <GlobalController/>
 
-    <Steps
+    <!--Steps
       :label="'duo synth'"
       :steps="16"
       :notes="['C1', 'C2', 'C3', 'D0', 'E4']"
       :synth="{ type: 'fm' }"
       :time="0.1"
     >
-    </Steps>
+    </Steps-->
 
-    <!--Steps
+    <SampleSteps
       :label="'1 row sample'"
       :steps="16"
-      :files="['../../../static/mp3/sense.mp3']"
-      :time="0.1"
+      :files="[
+      '../../../static/mp3/fx/ss37_Trap_FX_1.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_2.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_3.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_4.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_5.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_6.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_7.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_8.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_9.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_10.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_11.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_12.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_13.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_14.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_15.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_16.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_17.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_18.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_19.wav',
+      '../../../static/mp3/fx/ss37_Trap_FX_20.wav',
+      ]"
+      :time="2"
     >
-    </Steps-->
+    </SampleSteps>
 
 
 	</div>
