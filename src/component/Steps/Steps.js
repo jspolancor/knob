@@ -9,7 +9,7 @@ export default {
       id: null,
       sequencer: null, // UI
       looper: null, // Tone
-      sampler: null, // Files
+      stepHeight: 50,
     };
   },
   props: {
@@ -18,25 +18,18 @@ export default {
     synth: VueTypes.shape({
       type: VueTypes.oneOf(['synth', 'am', 'duo', 'fm', 'membrane', 'mono', 'pluck']),
     }),
-    notes: VueTypes.arrayOf(String), // array of notes  in string notatios
+    notes: VueTypes.arrayOf(String), // array of notes  in string notation
     files: VueTypes.arrayOf(String), // Array of file routes
-    time: VueTypes.number.isRequired, // Time a note should sound
-  },
-  created() {
-    if (this.files) {
-      const loopsObj = {};
-      this.files.forEach((file, index) => {
-        loopsObj[`D${index}`] = file;
-      });
-      this.sampler = new Tone.Sampler(loopsObj).toMaster();
-    }
+    time: VueTypes.number.isRequired,
   },
   mounted() {
     // Create the steps UI
+    // Get the viewport size
+    const stepperWidth = window.innerWidth - 40;
     this.id = `steps-${this._uid}`;
     this.$nextTick(() => {
       this.sequencer = new Nexus.Sequencer(`#${this.id}`, {
-        size: [200, 200],
+        size: [stepperWidth, this.stepHeight * this.notes.length],
         mode: 'toggle',
         rows: this.notes.length || this.files.length,
         columns: this.steps,
@@ -49,11 +42,8 @@ export default {
         (time, index) => {
           for (let i = 0; i < this.sequencer.matrix.pattern.length; i += 1) {
             if (this.sequencer.matrix.pattern[i][index]) {
-              if (this.files) {
-                this.sampler.triggerAttackRelease(this.notes[i]);
-              } else {
+                // this.sampler.triggerAttackRelease(this.notes[i]);
                 synth.triggerAttackRelease(this.notes[i], this.time);
-              }
             }
           }
         },

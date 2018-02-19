@@ -5,11 +5,10 @@
 	<div>
     <Knob :min="10" :max="300" :step="1" :input="globalBpm"></Knob>
 
-      <Steps
+    <Steps
       :label="'memb synth'"
-      :steps="8"
+      :steps="16"
       :notes="['D0']"
-      :files="['../../../static/mp3/sense.mp3']"
       :synth="{ type: 'membrane' }"
       :time="2"
     >
@@ -19,8 +18,8 @@
       :label="'memb synth'"
       :steps="8"
       :notes="['C1', 'C2', 'C3']"
-      :synth="{ type: 'membrane' }"
-      :time="1"
+      :synth="{ type: 'duo' }"
+      :time="0.1"
     >
     </Steps>
 
