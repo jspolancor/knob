@@ -26,7 +26,7 @@ export default {
     time: VueTypes.number.isRequired,
   },
   components: {
-    Knob
+    Knob,
   },
   mounted() {
     // Create the steps UI
@@ -42,23 +42,22 @@ export default {
 
       this.synthOutput = this.createSynth(this.synth.type);
       this.panVol = new Tone.PanVol();
-      console.log(this.panVol)
       this.synthOutput.chain(this.panVol, Tone.Master);
       // Create a looper for each component, every component is connected to the main bpm
       const stepsArr = Array.from(this.sequencer.matrix.ui.interactionTarget.children);
       this.looper = new Tone.Sequence(
         (time, index) => {
-          // Loop trough the steps and turn them on or off depending on the current looper note 
+          // Loop trough the steps and turn them on or off depending on the current looper note
           stepsArr.forEach((step, i) => {
             step.style.borderBottom = 'none';
-            if((this.steps - i + index) % this.steps === 0){
+            if ((this.steps - i + index) % this.steps === 0) {
               step.style.borderBottom = 'solid black 1px';
             }
           });
           for (let i = 0; i < this.sequencer.matrix.pattern.length; i += 1) {
             if (this.sequencer.matrix.pattern[i][index]) {
-                // this.sampler.triggerAttackRelease(this.notes[i]);
-                this.synthOutput.triggerAttackRelease(this.notes[i], this.time);
+              // this.sampler.triggerAttackRelease(this.notes[i]);
+              this.synthOutput.triggerAttackRelease(this.notes[i], this.time);
             }
           }
         },

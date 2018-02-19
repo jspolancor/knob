@@ -1,8 +1,15 @@
 import Nexus from 'nexusui';
+import VueTypes from 'vue-types';
 
 export default {
   name: 'Knob',
-  props: ['min', 'max', 'step', 'input'],
+  props: {
+    min: VueTypes.number.isRequired,
+    max: VueTypes.number.isRequired,
+    step: VueTypes.number.isRequired,
+    input: VueTypes.any.isRequired,
+    label: VueTypes.string,
+  },
   data() {
     return {
       id: null,

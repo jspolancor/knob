@@ -5,6 +5,6 @@ export default {
   name: 'HomePage',
   components: {
     GlobalController,
-    Steps
-  } 
+    Steps,
+  },
 };

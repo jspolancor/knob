@@ -4,5 +4,6 @@
 <template>
   <div :class="$style.component">
     <div class='knob' :id="id"></div>
+    <small>{{ label }}</small>
   </div>
 </template>
