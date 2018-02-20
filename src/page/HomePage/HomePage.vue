@@ -10,7 +10,7 @@
     </GlobalController>
 
     <Synth :type="'am'">
-      <Knob :min="-3000" :max="3000" :step="1" :input="'detune'"></Knob>
+      <Slider :min="-3000" :max="3000" :step="1" :input="'detune'" :label="'detune'"></Slider>
       <Steps
         :label="'Am base'"
         :steps="32"
@@ -25,7 +25,18 @@
       </Steps>
     </Synth>
 
-    <SampleSteps
+    <Synth :type="'duo'">
+      <Slider :min="-3000" :max="3000" :step="1" :input="'harmonicity'" :label="'harmony'"></Slider>
+      <Knob :min="-3000" :max="3000" :step="1" :input="'vibratoAmount'" :label="'vibrato'"></Knob>
+      <Steps
+        :label="'Duo synth'"
+        :steps="16"
+        :notes="['C1', 'C2', 'C3']"
+        :time="0.3">
+      </Steps>
+    </Synth>
+
+    <!--SampleSteps
       :label="'Atmosphere'"
       :steps="48"
       :files="[
@@ -37,7 +48,7 @@
       ]"
       :time="10"
     >
-    </SampleSteps>
+    </SampleSteps-->
 
 	</div>
 </template>

@@ -63,7 +63,7 @@ export default {
           validProperties = ['harmonicity', 'vibratoAmount'];
           break;
         case 'fm':
-          validProperties = ['detune', 'harmonicity', 'modulationIndex '];
+          validProperties = ['detune', 'harmonicity', 'modulationIndex'];
           break;
         case 'membrane':
           break;

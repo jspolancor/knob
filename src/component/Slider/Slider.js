@@ -20,7 +20,7 @@ export default {
     this.id = `slider-${this._uid}`;
     this.$nextTick(() => {
       this.slider = new Nexus.Slider(`#${this.id}`, {
-        size: [120, 20],
+        size: [120, 40],
         mode: 'relative',
         min: this.min,
         max: this.max,
