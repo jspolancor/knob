@@ -6,6 +6,7 @@
 
     <GlobalController>
       <Number :min="1" :max="300" :step="1" :input="'bpm'"></Number>
+      <Number :min="0" :max="6" :step="1" :input="'volume'"></Number>
     </GlobalController>
 
     <Synth :type="'am'">
