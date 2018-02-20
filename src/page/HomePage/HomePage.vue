@@ -4,9 +4,9 @@
 <template>
 	<div>
 
-    <GlobalController/>
+    <!--GlobalController/-->
 
-    <SampleSteps
+    <!--SampleSteps
       :label="'Atmosphere'"
       :steps="16"
       :files="[
@@ -69,7 +69,12 @@
         :synth="{ type: 'am' }"
         :notes="['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7']"
         :time="1">
-    </Steps>
+    </Steps-->
+
+    <Osc>
+      <Knob :min="0" :max="100" :step="1" :input="'frequency'"></Knob>
+      <Number :min="-300" :max="300" :step="1" :input="'detune'"></Number>
+    </Osc>
 
 	</div>
 </template>

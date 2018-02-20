@@ -2,7 +2,7 @@ import Nexus from 'nexusui';
 import VueTypes from 'vue-types';
 
 export default {
-  name: 'Knob',
+  name: 'Slider',
   props: {
     min: VueTypes.number.isRequired,
     max: VueTypes.number.isRequired,
@@ -13,22 +13,21 @@ export default {
   data() {
     return {
       id: null,
-      dial: {},
+      slider: {},
     };
   },
   mounted() {
-    this.id = `knob-${this._uid}`;
+    this.id = `slider-${this._uid}`;
     this.$nextTick(() => {
-      this.dial = new Nexus.Dial(`#${this.id}`, {
-        size: [40, 40],
-        interaction: 'radial',
+      this.slider = new Nexus.Slider(`#${this.id}`, {
+        size: [120, 20],
         mode: 'relative',
         min: this.min,
         max: this.max,
         step: this.step,
         value: 0,
       });
-      this.dial.on('change', this.dataChanged);
+      this.slider.on('change', this.dataChanged);
     });
   },
   methods: {

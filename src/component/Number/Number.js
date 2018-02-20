@@ -2,7 +2,7 @@ import Nexus from 'nexusui';
 import VueTypes from 'vue-types';
 
 export default {
-  name: 'Knob',
+  name: 'Number',
   props: {
     min: VueTypes.number.isRequired,
     max: VueTypes.number.isRequired,
@@ -13,22 +13,20 @@ export default {
   data() {
     return {
       id: null,
-      dial: {},
+      number: {},
     };
   },
   mounted() {
-    this.id = `knob-${this._uid}`;
+    this.id = `number-${this._uid}`;
     this.$nextTick(() => {
-      this.dial = new Nexus.Dial(`#${this.id}`, {
-        size: [40, 40],
-        interaction: 'radial',
-        mode: 'relative',
+      this.number = new Nexus.Number(`#${this.id}`, {
+        size: [60, 30],
         min: this.min,
         max: this.max,
         step: this.step,
         value: 0,
       });
-      this.dial.on('change', this.dataChanged);
+      this.number.on('change', this.dataChanged);
     });
   },
   methods: {

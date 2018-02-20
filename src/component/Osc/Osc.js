@@ -7,9 +7,6 @@ export default {
   data() {
     return {
       osc: null,
-      output: null,
-      frequencyOut: null,
-      detuneOut: null,
     };
   },
   props: ['controllers'],
@@ -25,8 +22,13 @@ export default {
       detune: 0,
     }).toMaster();
     this.osc.start();
-    this.frequencyOut = this.osc.frequency;
-    this.detuneOut = this.osc.detune;
-    this.output = this.osc;
+  },
+  methods: {
+    dataChanged(v, input) {
+      if (this.isValidInput) this.osc[input].value = v;
+    },
+    isValidInput(input) {
+      return ['frequency', 'detune', 'volume'].find(prop => prop === input);
+    },
   },
 };

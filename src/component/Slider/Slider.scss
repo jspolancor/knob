@@ -1,0 +1,13 @@
+/* stylelint-disable-next-line block-no-empty */
+:local {
+  .component {
+    display: inline-block;
+    text-align: center;
+    small {
+      font-size: 9px;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-family: monospace;
+    }
+  }
+}
