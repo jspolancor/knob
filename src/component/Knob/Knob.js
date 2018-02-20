@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     dataChanged(v) {
-      this.$parent.dataChanged(v, this.input); // It works 💃
+      this.$parent.dataChanged(v, this.input);
     },
   },
 };

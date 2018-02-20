@@ -16,15 +16,20 @@ export default {
   created() {
     Nexus.context = Tone.context;
     Tone.Transport.start();
-    Tone.Transport.bpm.value = 10;
+    Tone.Transport.bpm.value = 1;
     this.globalBpm = Tone.Transport.bpm;
   },
   mounted() {
     const oscilloscope = new Nexus.Oscilloscope('#osc', {
-      size: [100, 40],
+      size: [150, 30],
     });
     this.$nextTick(() => {
       oscilloscope.connect(Tone.Master);
     });
+  },
+  methods: {
+    dataChanged(v, input) {
+      if (['bpm'].find(prop => prop === input)) Tone.Transport[input].value = v;
+    },
   },
 };

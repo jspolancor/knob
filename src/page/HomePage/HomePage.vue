@@ -4,11 +4,29 @@
 <template>
 	<div>
 
-    <!--GlobalController/-->
+    <GlobalController>
+      <Number :min="1" :max="300" :step="1" :input="'bpm'"></Number>
+    </GlobalController>
 
-    <!--SampleSteps
+    <Synth :type="'am'">
+      <Knob :min="-3000" :max="3000" :step="1" :input="'detune'"></Knob>
+      <Steps
+        :label="'Am base'"
+        :steps="32"
+        :notes="['C1', 'C2', 'C3']"
+        :time="1">
+      </Steps>
+      <Steps
+        :label="'Am fantasy'"
+        :steps="8"
+        :notes="['C4', 'C5', 'C6']"
+        :time="0.1">
+      </Steps>
+    </Synth>
+
+    <SampleSteps
       :label="'Atmosphere'"
-      :steps="16"
+      :steps="48"
       :files="[
       `${$versionRoot}/mp3/idm-kit/K01Atmos-01.mp3`,
       `${$versionRoot}/mp3/idm-kit/K01Atmos-02.mp3`,
@@ -19,62 +37,6 @@
       :time="10"
     >
     </SampleSteps>
-
-    <SampleSteps
-      :label="'Drums'"
-      :steps="16"
-      :files="[
-      `${$versionRoot}/mp3/idm-kit/K01DHit-01.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01DHit-02.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01DHit-03.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01DHit-04.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01DHit-05.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01DHit-06.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01DHit-07.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01DHit-08.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01DHit-09.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01DHit-10.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01DHit-11.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01DHit-12.mp3`,
-      ]"
-      :time="1"
-    >
-    </SampleSteps>
-
-    <SampleSteps
-      :label="'Bells'"
-      :steps="32"
-      :files="[
-      `${$versionRoot}/mp3/idm-kit/K01Wibiano160G-01.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01Wibiano160G-02.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01Wibiano160G-03.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01Wibiano160G-04.mp3`,
-      `${$versionRoot}/mp3/idm-kit/K01Wibiano160G-05.mp3`,
-      ]"
-      :time="4"
-    >
-    </SampleSteps>
-
-    <Steps
-        :label="'Membrane'"
-        :steps="16"
-        :synth="{ type: 'membrane' }"
-        :notes="['C1', 'C2', 'C3']"
-        :time="1">
-    </Steps>
-
-    <Steps
-        :label="'Membrane'"
-        :steps="32"
-        :synth="{ type: 'am' }"
-        :notes="['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7']"
-        :time="1">
-    </Steps-->
-
-    <Osc>
-      <Knob :min="0" :max="100" :step="1" :input="'frequency'"></Knob>
-      <Number :min="-300" :max="300" :step="1" :input="'detune'"></Number>
-    </Osc>
 
 	</div>
 </template>

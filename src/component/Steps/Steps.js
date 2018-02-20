@@ -18,9 +18,6 @@ export default {
   props: {
     label: VueTypes.string.isRequired, // Label to show
     steps: VueTypes.integer.isRequired, // number of steps
-    synth: VueTypes.shape({
-      type: VueTypes.oneOf(['synth', 'am', 'duo', 'fm', 'membrane', 'mono']),
-    }),
     notes: VueTypes.arrayOf(String).isRequired, // array of notes  in string notation
     time: VueTypes.number.isRequired,
   },
@@ -38,10 +35,6 @@ export default {
         rows: this.notes.length,
         columns: this.steps,
       });
-
-      this.synthOutput = this.createSynth(this.synth.type);
-      this.panVol = new Tone.PanVol();
-      this.synthOutput.chain(this.panVol, Tone.Master);
       // Create a looper for each component, every component is connected to the main bpm
       const stepsArr = Array.from(this.sequencer.matrix.ui.interactionTarget.children);
       this.looper = new Tone.Sequence(
@@ -56,7 +49,8 @@ export default {
           for (let i = 0; i < this.sequencer.matrix.pattern.length; i += 1) {
             if (this.sequencer.matrix.pattern[i][index]) {
               // this.sampler.triggerAttackRelease(this.notes[i]);
-              this.synthOutput.triggerAttackRelease(this.notes[i], this.time);
+              // this.synthOutput.triggerAttackRelease(this.notes[i], this.time);
+              this.$parent.synth.triggerAttackRelease(this.notes[i], this.time);
             }
           }
         },
@@ -67,46 +61,5 @@ export default {
       this.looper.start();
     });
   },
-  methods: {
-    /**
-     * Returns a synth based on a synth type
-     * @param {String} type synth type
-     */
-    createSynth(type) {
-      let synth;
-      switch (type) {
-        case 'synth':
-          synth = new Tone.Synth({
-            oscillator: {
-              type: 'square',
-            },
-            envelope: {
-              attack: 0.01,
-              decay: 0.2,
-              sustain: 0.2,
-              release: 0.2,
-            },
-          }).toMaster();
-          break;
-        case 'am':
-          synth = new Tone.AMSynth().toMaster();
-          break;
-        case 'duo':
-          synth = new Tone.DuoSynth().toMaster();
-          break;
-        case 'fm':
-          synth = new Tone.FMSynth().toMaster();
-          break;
-        case 'membrane':
-          synth = new Tone.MembraneSynth().toMaster();
-          break;
-        case 'mono':
-          synth = new Tone.MonoSynth().toMaster();
-          break;
-        default:
-          break;
-      }
-      return synth;
-    },
-  },
+  methods: {},
 };

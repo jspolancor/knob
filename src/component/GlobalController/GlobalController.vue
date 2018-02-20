@@ -3,7 +3,7 @@
 
 <template>
   <div :class="$style.component">
-    <Knob :min="10" :max="200" :step="1" :input="globalBpm"></Knob>
+    <slot/>
     <div :class="$style.osc" id="osc"></div>
   </div>
 </template>
