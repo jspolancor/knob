@@ -49,7 +49,6 @@ export default {
 
     // Create a polysynth
     this.polySynth = new Tone.PolySynth(6, this.Synth).toMaster();
-    this.polySynth.set('detune', -1200);
   },
   methods: {
     dataChanged(v, input) {
