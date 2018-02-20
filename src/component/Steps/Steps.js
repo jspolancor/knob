@@ -50,7 +50,7 @@ export default {
             if (this.sequencer.matrix.pattern[i][index]) {
               // this.sampler.triggerAttackRelease(this.notes[i]);
               // this.synthOutput.triggerAttackRelease(this.notes[i], this.time);
-              this.$parent.synth.triggerAttackRelease(this.notes[i], this.time);
+              this.$parent.polySynth.triggerAttackRelease(this.notes[i], this.time);
             }
           }
         },

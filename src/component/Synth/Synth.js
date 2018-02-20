@@ -5,7 +5,8 @@ export default {
   name: 'Synth',
   data() {
     return {
-      synth: null,
+      synth: {},
+      polySynth: {},
     };
   },
   props: {
@@ -45,10 +46,14 @@ export default {
         this.synth = new Tone.MonoSynth().toMaster();
         break;
     }
+
+    // Create a polysynth
+    this.polySynth = new Tone.PolySynth(6, this.Synth).toMaster();
+    this.polySynth.set('detune', -1200);
   },
   methods: {
     dataChanged(v, input) {
-      if (this.isValidInput) this.synth[input].value = v;
+      if (this.isValidInput) this.polySynth[input].value = v;
     },
     isValidInput(input) {
       let validProperties = [];

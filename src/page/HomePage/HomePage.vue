@@ -12,26 +12,20 @@
     <Synth :type="'am'">
       <Slider :min="-3000" :max="3000" :step="1" :input="'detune'" :label="'detune'"></Slider>
       <Steps
-        :label="'Am base'"
-        :steps="32"
-        :notes="['C1', 'C2', 'C3']"
+        :label="'Am C pentatonic'"
+        :steps="16"
+        :notes="['C4', 'E4', 'G4', 'A4']"
         :time="1">
-      </Steps>
-      <Steps
-        :label="'Am fantasy'"
-        :steps="8"
-        :notes="['C4', 'C5', 'C6']"
-        :time="0.1">
       </Steps>
     </Synth>
 
     <Synth :type="'duo'">
-      <Slider :min="-3000" :max="3000" :step="1" :input="'harmonicity'" :label="'harmony'"></Slider>
-      <Knob :min="-3000" :max="3000" :step="1" :input="'vibratoAmount'" :label="'vibrato'"></Knob>
+      <Slider :min="-1000" :max="1000" :step="1" :input="'harmonicity'" :label="'harmony'"></Slider>
+      <Knob :min="-1000" :max="1000" :step="1" :input="'vibratoAmount'" :label="'vibrato'"></Knob>
       <Steps
         :label="'Duo synth'"
-        :steps="16"
-        :notes="['C1', 'C2', 'C3']"
+        :steps="32"
+        :notes="['C4', 'E4', 'G4', 'A4']"
         :time="0.3">
       </Steps>
     </Synth>
