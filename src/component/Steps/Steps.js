@@ -29,7 +29,7 @@ export default {
   },
   mounted() {
     // Create the steps UI
-    const stepperWidth = window.innerWidth - 60;
+    const stepperWidth = window.innerWidth - 40;
     this.id = `steps-${this._uid}`;
     this.$nextTick(() => {
       this.sequencer = new Nexus.Sequencer(`#${this.id}`, {
