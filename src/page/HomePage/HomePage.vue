@@ -9,7 +9,7 @@
       <Number :min="0" :max="6" :step="1" :input="'volume'"></Number>
     </GlobalController>
 
-    <Synth :type="'am'">
+    <!--Synth :type="'fm'">
       <Slider :min="-3000" :max="3000" :step="1" :input="'detune'" :label="'detune'"></Slider>
       <Steps
         :label="'Am C pentatonic'"
@@ -17,11 +17,14 @@
         :notes="['C4', 'E4', 'G4', 'A4']"
         :time="1">
       </Steps>
-    </Synth>
+    </Synth-->
 
-    <Synth :type="'duo'">
-      <Slider :min="-1000" :max="1000" :step="1" :input="'harmonicity'" :label="'harmony'"></Slider>
-      <Knob :min="-1000" :max="1000" :step="1" :input="'vibratoAmount'" :label="'vibrato'"></Knob>
+    <Synth :type="'fm'">
+      <Slider :min="-3000" :max="3000" :step="1" :input="'detune'" :label="'Detune'"></Slider>
+      <Slider :min="0" :max="5" :step="0.1" :input="'attack'" :label="'Attack'"></Slider>
+      <Knob :min="0" :max="10" :step="0.1" :input="'decay'" :label="'Decay'"></Knob>
+      <Knob :min="0" :max="10" :step="0.1" :input="'sustain'" :label="'Sustain'"></Knob>
+      <Knob :min="0" :max="10" :step="0.1" :input="'release'" :label="'Release'"></Knob>
       <Steps
         :label="'Duo synth'"
         :steps="32"

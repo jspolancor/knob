@@ -52,31 +52,23 @@ export default {
   },
   methods: {
     dataChanged(v, input) {
-      if (this.isValidInput) this.polySynth[input].value = v;
+      input = input.toLowerCase();
+      if (this.isValidInput(input)) {
+        const globalProp = ['detune'].find(inp => inp === input);
+        if (globalProp) {
+          this.polySynth[input].value = v;
+        } else {
+          // Modify poly
+          this.polySynth.set({
+            envelope: {
+              [input]: v,
+            },
+          });
+        }
+      }
     },
     isValidInput(input) {
-      let validProperties = [];
-      switch (this.type) {
-        case 'synth':
-          validProperties = ['frequency', 'detune', 'volume'];
-          break;
-        case 'am':
-          validProperties = ['detune', 'harmonicity'];
-          break;
-        case 'duo':
-          validProperties = ['harmonicity', 'vibratoAmount'];
-          break;
-        case 'fm':
-          validProperties = ['detune', 'harmonicity', 'modulationIndex'];
-          break;
-        case 'membrane':
-          break;
-        case 'mono':
-          validProperties = ['detune'];
-          break;
-        default:
-          break;
-      }
+      const validProperties = ['attack', 'decay', 'sustain', 'release', 'detune'];
       return validProperties.find(prop => prop === input);
     },
   },

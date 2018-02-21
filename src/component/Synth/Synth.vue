@@ -2,7 +2,7 @@
 <script src="./Synth.js"></script>
 
 <template>
-  <div>
+  <div :class="$style.component">
     <slot/>
   </div>
 </template>
