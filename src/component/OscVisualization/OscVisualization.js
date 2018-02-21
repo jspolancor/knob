@@ -12,7 +12,7 @@ export default {
     };
   },
   mounted() {
-    this.id = `knob-${this._uid}`;
+    this.id = `osc-visual-${this._uid}`;
     this.$nextTick(() => {
       const oscilloscope = new Nexus.Oscilloscope(`#${this.id}`, {
         size: [150, 66],

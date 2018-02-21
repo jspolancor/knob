@@ -13,7 +13,6 @@ export default {
       stepHeight: 25,
       panVol: {}, // Panning + Volume object
       fileNotes: [],
-      context: {},
     };
   },
   props: {
@@ -25,6 +24,11 @@ export default {
   components: {
     Knob,
   },
+  computed: {
+    hasSlot() {
+      return this.$slots.default;
+    },
+  },
   created() {
     const loopsObj = {};
     this.files.forEach((file, index) => {
@@ -32,11 +36,10 @@ export default {
       this.fileNotes.push(`D${index}`);
     });
     this.sampler = new Tone.Sampler(loopsObj).toMaster();
-    this.context = this.sampler.context;
   },
   mounted() {
     // Create the steps UI
-    const stepperWidth = window.innerWidth - 60;
+    const stepperWidth = window.innerWidth - 80;
     this.id = `steps-${this._uid}`;
     this.$nextTick(() => {
       this.sequencer = new Nexus.Sequencer(`#${this.id}`, {
@@ -69,5 +72,15 @@ export default {
 
       this.looper.start();
     });
+  },
+  methods: {
+    dataChanged(v, input) {
+      input = input.toLowerCase();
+      if (this.isValidInput(input)) this.sampler[input].value = v;
+    },
+    isValidInput(input) {
+      const validProperties = ['volume'];
+      return validProperties.find(prop => prop === input);
+    },
   },
 };

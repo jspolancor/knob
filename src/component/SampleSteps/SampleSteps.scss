@@ -4,9 +4,12 @@
     @include box();
   }
   .controllers {
-    padding-top: 14px;
+    display: block;
+    min-height: 65px;
   }
-  .knobP {
-    display: inline-block;
+  .steps {
+    padding: 10px;
+    border: solid $border-color 1px;
+    margin-top: 10px;
   }
 }

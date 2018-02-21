@@ -45,7 +45,7 @@
       </Steps>
     </Synth>
 
-    <!--SampleSteps
+    <SampleSteps
       :label="'Atmosphere'"
       :steps="48"
       :files="[
@@ -57,7 +57,9 @@
       ]"
       :time="8"
     >
-    </SampleSteps-->
+      <Knob :min="-10" :max="6" :step="1" :input="'volume'" :label="'Volume'"></Knob>
+      <OscVisualization :input="'sampler'"></OscVisualization>
+    </SampleSteps>
 
 	</div>
 </template>
