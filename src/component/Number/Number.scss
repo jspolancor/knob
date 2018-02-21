@@ -3,6 +3,8 @@
   .component {
     display: inline-block;
     text-align: center;
+    border: solid $border-color 1px;
+    padding: 8px;
     small {
       font-size: 9px;
       text-transform: uppercase;

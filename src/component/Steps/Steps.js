@@ -26,7 +26,8 @@ export default {
   },
   mounted() {
     // Create the steps UI
-    const stepperWidth = window.innerWidth - 40;
+    const stepperWidth = window.innerWidth - 80;
+    console.log(stepperWidth);
     this.id = `steps-${this._uid}`;
     this.$nextTick(() => {
       this.sequencer = new Nexus.Sequencer(`#${this.id}`, {
@@ -43,7 +44,7 @@ export default {
           stepsArr.forEach((step, i) => {
             step.style.borderBottom = 'none';
             if ((this.steps - i + index) % this.steps === 0) {
-              step.style.borderBottom = 'solid black 1px';
+              step.style.borderBottom = 'solid rgb(191, 191, 191) 1px';
             }
           });
           for (let i = 0; i < this.sequencer.matrix.pattern.length; i += 1) {

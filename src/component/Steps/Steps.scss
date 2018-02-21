@@ -1,14 +1,8 @@
 /* stylelint-disable-next-line block-no-empty */
 :local {
   .component {
-    /* border: solid grey 1px;
     padding: 10px;
-    margin: 10px; */
-  }
-  .controllers {
-    padding-top: 14px;
-  }
-  .knobP {
-    display: inline-block;
+    border: solid $border-color 1px;
+    margin-top: 10px;
   }
 }

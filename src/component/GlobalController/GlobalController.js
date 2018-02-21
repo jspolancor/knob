@@ -21,7 +21,7 @@ export default {
   },
   mounted() {
     const oscilloscope = new Nexus.Oscilloscope('#osc', {
-      size: [150, 30],
+      size: [150, 66],
     });
     this.$nextTick(() => {
       oscilloscope.connect(Tone.Master);

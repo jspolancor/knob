@@ -1,14 +1,13 @@
 /* stylelint-disable-next-line block-no-empty */
 :local {
   .component {
+    margin-top: 20px 0;
     display: inline-block;
     text-align: center;
-    margin-top: 20px 0;
-    small {
-      font-size: 9px;
-      text-transform: uppercase;
-      font-weight: bold;
-      font-family: monospace;
+    border: solid $border-color 1px;
+    padding: 8px;
+    [nexus-ui] {
+      margin-top: 20px;
     }
   }
 }

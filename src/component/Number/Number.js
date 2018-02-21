@@ -8,7 +8,7 @@ export default {
     max: VueTypes.number.isRequired,
     step: VueTypes.number.isRequired,
     input: VueTypes.any.isRequired,
-    label: VueTypes.string,
+    label: VueTypes.string.isRequired,
   },
   data() {
     return {
