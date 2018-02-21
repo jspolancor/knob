@@ -20,11 +20,8 @@
     </Synth-->
 
     <Synth :type="'fm'">
-      <Slider :min="-3000" :max="3000" :step="1" :input="'detune'" :label="'Detune'"></Slider>
-      <Slider :min="0" :max="5" :step="0.1" :input="'attack'" :label="'Attack'"></Slider>
-      <Knob :min="0" :max="10" :step="0.1" :input="'decay'" :label="'Decay'"></Knob>
-      <Knob :min="0" :max="10" :step="0.1" :input="'sustain'" :label="'Sustain'"></Knob>
-      <Knob :min="0" :max="10" :step="0.1" :input="'release'" :label="'Release'"></Knob>
+      <Knob :min="-10" :max="6" :step="1" :input="'volume'" :label="'Volume'"></Knob>
+      <Knob :min="-3000" :max="3000" :step="1" :input="'detune'" :label="'Detune'"></Knob>
       <Steps
         :label="'Duo synth'"
         :steps="32"
@@ -33,7 +30,7 @@
       </Steps>
     </Synth>
 
-    <!--SampleSteps
+    <SampleSteps
       :label="'Atmosphere'"
       :steps="48"
       :files="[
@@ -45,7 +42,7 @@
       ]"
       :time="10"
     >
-    </SampleSteps-->
+    </SampleSteps>
 
 	</div>
 </template>

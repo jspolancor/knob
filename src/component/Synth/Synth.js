@@ -15,60 +15,38 @@ export default {
   created() {
     switch (this.type) {
       case 'synth':
-        this.synth = new Tone.Synth({
-          oscillator: {
-            type: 'square',
-          },
-          envelope: {
-            attack: 0.01,
-            decay: 0.2,
-            sustain: 0.2,
-            release: 0.2,
-          },
-        }).toMaster();
+        this.synth = Tone.Synth;
         break;
       case 'am':
-        this.synth = new Tone.AMSynth().toMaster();
+        this.synth = Tone.AMSynth;
         break;
       case 'duo':
-        this.synth = new Tone.DuoSynth().toMaster();
+        this.synth = Tone.DuoSynth;
         break;
       case 'fm':
-        this.synth = new Tone.FMSynth().toMaster();
+        this.synth = Tone.FMSynth;
         break;
       case 'membrane':
-        this.synth = new Tone.MembraneSynth().toMaster();
+        this.synth = Tone.MembraneSynth;
         break;
       case 'mono':
-        this.synth = new Tone.MonoSynth().toMaster();
+        this.synth = Tone.MonoSynth;
         break;
       default:
-        this.synth = new Tone.MonoSynth().toMaster();
+        this.synth = Tone.MonoSynth;
         break;
     }
 
     // Create a polysynth
-    this.polySynth = new Tone.PolySynth(6, this.Synth).toMaster();
+    this.polySynth = new Tone.PolySynth(6, this.synth).toMaster();
   },
   methods: {
     dataChanged(v, input) {
       input = input.toLowerCase();
-      if (this.isValidInput(input)) {
-        const globalProp = ['detune'].find(inp => inp === input);
-        if (globalProp) {
-          this.polySynth[input].value = v;
-        } else {
-          // Modify poly
-          this.polySynth.set({
-            envelope: {
-              [input]: v,
-            },
-          });
-        }
-      }
+      if (this.isValidInput(input)) this.polySynth[input].value = v;
     },
     isValidInput(input) {
-      const validProperties = ['attack', 'decay', 'sustain', 'release', 'detune'];
+      const validProperties = ['volume', 'detune'];
       return validProperties.find(prop => prop === input);
     },
   },
