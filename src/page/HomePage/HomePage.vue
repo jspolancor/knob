@@ -16,7 +16,7 @@
       <Steps
         :label="'AM synth'"
         :steps="32"
-        :notes="['C4', 'E4', 'G4', 'A4']"
+        :notes="['E3', 'G3', 'A3', 'B4', 'D4', 'E4', 'G4', 'A4']"
         :time="0.5">
       </Steps>
     </Synth>
@@ -26,22 +26,44 @@
       <Slider :min="-3000" :max="3000" :step="1" :input="'detune'" :label="'Detune'"></Slider>
       <OscVisualization :input="'polySynth'"></OscVisualization>
       <Steps
-        :label="'AM synth'"
+        :label="'FM synth'"
         :steps="32"
-        :notes="['C4', 'E4', 'G4', 'A4']"
+        :notes="['D4', 'E4', 'F#4', 'A4', 'B5', 'D5', 'E5', 'F#5']"
         :time="0.5">
       </Steps>
     </Synth>
 
     <Synth :type="'duo'">
       <Knob :min="-10" :max="6" :step="1" :input="'volume'" :label="'Volume'"></Knob>
-      <Knob :min="-3000" :max="3000" :step="1" :input="'detune'" :label="'Detune'"></Knob>
       <OscVisualization :input="'polySynth'"></OscVisualization>
       <Steps
         :label="'DUO synth'"
         :steps="16"
-        :notes="['C4', 'E4', 'G4', 'A4']"
+        :notes="['G3', 'A3', 'C4', 'D4', 'E4', 'G4', 'A4', 'C5']"
         :time="0.3">
+      </Steps>
+    </Synth>
+
+    <Synth :type="'membrane'">
+      <Knob :min="-10" :max="6" :step="1" :input="'volume'" :label="'Volume'"></Knob>
+      <OscVisualization :input="'polySynth'"></OscVisualization>
+      <Steps
+        :label="'Membrane synth'"
+        :steps="8"
+        :notes="['C4', 'D4', 'F4']"
+        :time="0.5">
+      </Steps>
+    </Synth>
+
+    <Synth :type="'mono'">
+      <Slider :min="-10" :max="6" :step="1" :input="'volume'" :label="'Volume'"></Slider>
+      <Slider :min="-3000" :max="3000" :step="1" :input="'detune'" :label="'Detune'"></Slider>
+      <OscVisualization :input="'polySynth'"></OscVisualization>
+      <Steps
+        :label="'Mono synth'"
+        :steps="16"
+        :notes="['E3', 'F#3', 'G#3', 'B4', 'C#4', 'E4', 'F#4', 'G#4']"
+        :time="0.1">
       </Steps>
     </Synth>
 
