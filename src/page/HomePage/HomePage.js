@@ -5,6 +5,7 @@ import Synth from '../../component/Synth';
 import Knob from '../../component/Knob';
 import Slider from '../../component/Slider';
 import Number from '../../component/Number';
+import OscVisualization from '../../component/OscVisualization';
 
 export default {
   name: 'HomePage',
@@ -16,5 +17,6 @@ export default {
     Knob,
     Slider,
     Number,
+    OscVisualization,
   },
 };

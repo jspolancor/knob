@@ -13,6 +13,7 @@ export default {
       stepHeight: 25,
       panVol: {}, // Panning + Volume object
       fileNotes: [],
+      context: {},
     };
   },
   props: {
@@ -31,6 +32,7 @@ export default {
       this.fileNotes.push(`D${index}`);
     });
     this.sampler = new Tone.Sampler(loopsObj).toMaster();
+    this.context = this.sampler.context;
   },
   mounted() {
     // Create the steps UI

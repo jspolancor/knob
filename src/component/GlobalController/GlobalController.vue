@@ -4,6 +4,5 @@
 <template>
   <div :class="$style.component">
     <slot/>
-    <div :class="$style.osc" id="osc"></div>
   </div>
 </template>
