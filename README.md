@@ -7,8 +7,6 @@ A declarative step sequencer built with the vue-skeleton + Tone JS + Nexus UI
 
 The goal is to mix a bunch of vue components in a page and declaratively compose sequencers linked to each other.
 
-[Try it!](https://steps-f1be4.firebaseapp.com)
-
 ```html
 <synthetizer>
   <volume></volume>
@@ -16,6 +14,17 @@ The goal is to mix a bunch of vue components in a page and declaratively compose
   <steps></steps>
 <synthetizer>
 ```
+
+[Try it!](https://steps-f1be4.firebaseapp.com)
+
+# [goo.gl/5vW85m](goo.gl/5vW85m)
+
+
+# Why?
+
+To learn stuff
+
+# How?
 
 There are three types of components:
 
